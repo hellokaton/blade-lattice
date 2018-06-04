@@ -1,0 +1,9 @@
+package io.github.biezhi.lattice.exception;
+
+/**
+ * @author biezhi
+ * @date 2018/6/4
+ */
+public class LatticeException extends Exception {
+
+}
