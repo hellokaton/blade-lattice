@@ -1,9 +1,12 @@
 package io.github.biezhi.lattice;
 
+import com.blade.ioc.annotation.Bean;
+
 /**
  * @author biezhi
  * @date 2018/6/4
  */
+@Bean
 public class MyRealm implements LatticeRealm<User> {
 
     @Override
