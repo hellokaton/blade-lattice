@@ -9,6 +9,16 @@
 
 ## 使用
 
+**添加依赖**
+
+```xml
+<dependency>
+    <groupId>io.github.biezhi</groupId>
+    <artifactId>lattice</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+</dependency>
+```
+
 **启用 Lattice 中间件**
 
 ```java
