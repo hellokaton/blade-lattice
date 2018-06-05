@@ -1,7 +1,6 @@
 package io.github.biezhi.lattice;
 
 import com.blade.ioc.annotation.Inject;
-import com.blade.mvc.WebContext;
 import com.blade.mvc.hook.Signature;
 import com.blade.mvc.hook.WebHook;
 import io.github.biezhi.lattice.annotation.Logical;
@@ -29,7 +28,11 @@ public class LatticeMiddleware implements WebHook {
     @Override
     public boolean before(Signature signature) {
 
-//        Lattice lattice = WebContext.blade().ioc().getBean(Lattice.class);
+        String uri = signature.request().uri();
+
+        if (excludeUrl(uri)) {
+            return true;
+        }
 
         Method   action     = signature.getAction();
         Class<?> controller = action.getDeclaringClass();
@@ -70,6 +73,19 @@ public class LatticeMiddleware implements WebHook {
         }
 
         return true;
+    }
+
+    private boolean excludeUrl(String uri) {
+        Set<String> excludeUrls = lattice.excludeUrls();
+        for (String excludeUrl : excludeUrls) {
+            if (excludeUrl.equals(uri)) {
+                return true;
+            }
+            if (uri.startsWith(excludeUrl)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean checkRoles(AuthInfo authInfo, Roles roles) {

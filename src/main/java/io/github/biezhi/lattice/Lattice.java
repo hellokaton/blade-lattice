@@ -32,6 +32,13 @@ public class Lattice {
     @Inject
     private LatticeRealm<?> realm;
 
+    public Lattice() {
+        this.excludeUrls.add("/static/");
+        this.excludeUrls.add("/");
+        this.excludeUrls.add("/index");
+        this.excludeUrls.add("/login");
+    }
+
     public Lattice realm(LatticeRealm latticeRealm) {
         this.realm = latticeRealm;
         return this;
@@ -79,6 +86,10 @@ public class Lattice {
             this.excludeUrls.addAll(Arrays.asList(urls));
         }
         return this;
+    }
+
+    public Set<String> excludeUrls(){
+        return this.excludeUrls;
     }
 
     public void login(LoginToken loginToken) {
