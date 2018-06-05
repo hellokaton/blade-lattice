@@ -1,5 +1,7 @@
 # lattice
 
+解决 Blade 中认证授权问题的轻量级中间件，[示例程序](https://github.com/lets-blade/lattice-example)。
+
 ## 核心组件
 
 - **Lattice**: 管理统一配置
