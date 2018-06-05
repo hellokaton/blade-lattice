@@ -11,5 +11,6 @@ public @interface Roles {
 
     String[] value();
 
-    Logical logical() default Logical.AND; 
+    Logical logical() default Logical.AND;
+
 }
