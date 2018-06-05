@@ -81,7 +81,7 @@ public class LatticeMiddleware implements WebHook {
             if (excludeUrl.equals(uri)) {
                 return true;
             }
-            if (uri.startsWith(excludeUrl)) {
+            if (uri.length() > 1 && uri.startsWith(excludeUrl)) {
                 return true;
             }
         }
