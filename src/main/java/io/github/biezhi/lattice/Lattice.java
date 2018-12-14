@@ -1,6 +1,7 @@
 package io.github.biezhi.lattice;
 
 import com.blade.ioc.annotation.Inject;
+import com.blade.mvc.RouteContext;
 import com.blade.mvc.WebContext;
 import com.blade.mvc.http.Response;
 import com.blade.mvc.http.Session;
@@ -24,8 +25,8 @@ public class Lattice {
     private String unauthorizedUrl;
     private String sessionKey = Constant.DEFAULT_SESSION_KEY;
 
-    private Consumer<Response> authenticateFailAction = response -> response.redirect(this.loginUrl());
-    private Consumer<Response> authorizeFailAction    = response -> response.unauthorized().redirect(this.unauthorizedUrl());
+    private Consumer<RouteContext> authenticateFailAction = ctx -> ctx.redirect(this.loginUrl());
+    private Consumer<RouteContext> authorizeFailAction    = ctx -> ctx.response().unauthorized().redirect(this.unauthorizedUrl());
 
     private Set<String> excludeUrls = new HashSet<>();
 
@@ -71,13 +72,13 @@ public class Lattice {
         return this.unauthorizedUrl;
     }
 
-    public boolean onAuthenticateFail(Response response) {
-        this.authenticateFailAction.accept(response);
+    public boolean onAuthenticateFail(RouteContext ctx) {
+        this.authenticateFailAction.accept(ctx);
         return false;
     }
 
-    public boolean onAuthorizeFail(Response response) {
-        this.authorizeFailAction.accept(response);
+    public boolean onAuthorizeFail(RouteContext ctx) {
+        this.authorizeFailAction.accept(ctx);
         return false;
     }
 
@@ -88,7 +89,7 @@ public class Lattice {
         return this;
     }
 
-    public Set<String> excludeUrls(){
+    public Set<String> excludeUrls() {
         return this.excludeUrls;
     }
 

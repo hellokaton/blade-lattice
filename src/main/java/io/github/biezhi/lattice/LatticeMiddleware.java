@@ -17,7 +17,6 @@ import java.util.Set;
  * LatticeMiddleware
  *
  * @author biezhi
- * @date 2018/6/4
  */
 @Slf4j
 public class LatticeMiddleware implements WebHook {
@@ -27,34 +26,35 @@ public class LatticeMiddleware implements WebHook {
 
     @Override
     public boolean before(RouteContext ctx) {
-
         String uri = ctx.uri();
-
         if (excludeUrl(uri)) {
             return true;
         }
 
-        Method   action     = ctx.routeAction();
+        Method action = ctx.routeAction();
+
         Class<?> controller = action.getDeclaringClass();
 
         Users users = action.getAnnotation(Users.class);
         if (null == users) {
             users = controller.getAnnotation(Users.class);
         }
+
         if (null != users && null == lattice.loginUser()) {
-            return lattice.onAuthenticateFail(ctx.response());
+            return lattice.onAuthenticateFail(ctx);
         }
 
         Roles roles = action.getAnnotation(Roles.class);
         if (null == roles) {
             roles = controller.getAnnotation(Roles.class);
         }
+
         if (null != roles) {
             if (null == lattice.loginUser()) {
-                return lattice.onAuthenticateFail(ctx.response());
+                return lattice.onAuthenticateFail(ctx);
             }
             if (!this.checkRoles(lattice.authInfo(), roles)) {
-                return lattice.onAuthorizeFail(ctx.response());
+                return lattice.onAuthorizeFail(ctx);
             }
         }
 
@@ -65,10 +65,10 @@ public class LatticeMiddleware implements WebHook {
 
         if (null != permissions) {
             if (null == lattice.loginUser()) {
-                return lattice.onAuthenticateFail(ctx.response());
+                return lattice.onAuthenticateFail(ctx);
             }
             if (!this.checkPermissions(lattice.authInfo(), permissions)) {
-                return lattice.onAuthorizeFail(ctx.response());
+                return lattice.onAuthorizeFail(ctx);
             }
         }
 
@@ -81,23 +81,25 @@ public class LatticeMiddleware implements WebHook {
             if (excludeUrl.equals(uri)) {
                 return true;
             }
-            if (excludeUrl.length() > 1 && uri.startsWith(excludeUrl)) {
+            if (excludeUrl.length() > 1 &&
+                    uri.startsWith(excludeUrl)) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean checkRoles(AuthInfo authInfo, Roles roles) {
+    private boolean checkRoles(AuthInfo<String> authInfo, Roles roles) {
         Set<String> authInfoRoles = authInfo.getRoles();
         String[]    roleArray     = roles.value();
 
         return arrayContains(authInfoRoles, roleArray, roles.logical());
     }
 
-    private boolean checkPermissions(AuthInfo authInfo, Permissions permissions) {
+    private boolean checkPermissions(AuthInfo<String> authInfo, Permissions permissions) {
         Set<String> authInfoPermissions = authInfo.getPermissions();
         String[]    permissionArray     = permissions.value();
+
         return arrayContains(authInfoPermissions, permissionArray, permissions.logical());
     }
 
