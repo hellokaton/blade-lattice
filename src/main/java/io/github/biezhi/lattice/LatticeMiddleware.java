@@ -1,7 +1,7 @@
 package io.github.biezhi.lattice;
 
 import com.blade.ioc.annotation.Inject;
-import com.blade.mvc.hook.Signature;
+import com.blade.mvc.RouteContext;
 import com.blade.mvc.hook.WebHook;
 import io.github.biezhi.lattice.annotation.Logical;
 import io.github.biezhi.lattice.annotation.Permissions;
@@ -26,15 +26,15 @@ public class LatticeMiddleware implements WebHook {
     private Lattice lattice;
 
     @Override
-    public boolean before(Signature signature) {
+    public boolean before(RouteContext ctx) {
 
-        String uri = signature.request().uri();
+        String uri = ctx.uri();
 
         if (excludeUrl(uri)) {
             return true;
         }
 
-        Method   action     = signature.getAction();
+        Method   action     = ctx.routeAction();
         Class<?> controller = action.getDeclaringClass();
 
         Users users = action.getAnnotation(Users.class);
@@ -42,7 +42,7 @@ public class LatticeMiddleware implements WebHook {
             users = controller.getAnnotation(Users.class);
         }
         if (null != users && null == lattice.loginUser()) {
-            return lattice.onAuthenticateFail(signature.response());
+            return lattice.onAuthenticateFail(ctx.response());
         }
 
         Roles roles = action.getAnnotation(Roles.class);
@@ -51,10 +51,10 @@ public class LatticeMiddleware implements WebHook {
         }
         if (null != roles) {
             if (null == lattice.loginUser()) {
-                return lattice.onAuthenticateFail(signature.response());
+                return lattice.onAuthenticateFail(ctx.response());
             }
             if (!this.checkRoles(lattice.authInfo(), roles)) {
-                return lattice.onAuthorizeFail(signature.response());
+                return lattice.onAuthorizeFail(ctx.response());
             }
         }
 
@@ -65,10 +65,10 @@ public class LatticeMiddleware implements WebHook {
 
         if (null != permissions) {
             if (null == lattice.loginUser()) {
-                return lattice.onAuthenticateFail(signature.response());
+                return lattice.onAuthenticateFail(ctx.response());
             }
             if (!this.checkPermissions(lattice.authInfo(), permissions)) {
-                return lattice.onAuthorizeFail(signature.response());
+                return lattice.onAuthorizeFail(ctx.response());
             }
         }
 
