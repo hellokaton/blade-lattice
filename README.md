@@ -22,17 +22,17 @@
 **启用 Lattice 中间件**
 
 ```java
-Blade.me().use(new LatticeMiddleware());
+Blade.of().use(new LatticeMiddleware());
 ```
 
 **配置 Lattice 并托管到 IOC**
 
 ```java
 @Bean
-public class Bootstrap implements BeanProcessor {
+public class Bootstrap implements BladeLoader {
 
     @Override
-    public void preHandle(Blade blade) {
+    public void preLoad(Blade blade) {
         Lattice lattice = new Lattice();
         lattice.loginUrl("/login").unauthorizedUrl("/unauthorized");
 
@@ -42,7 +42,7 @@ public class Bootstrap implements BeanProcessor {
     }
 
     @Override
-    public void processor(Blade blade) {
+    public void load(Blade blade) {
 
         blade.templateEngine(new JetbrickTemplateEngine());
 
