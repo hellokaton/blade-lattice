@@ -8,18 +8,24 @@
     <artifactId>blade-lattice</artifactId>
     <version>0.1.0</version>
 
+    <name>blade-lattice</name>
+    <url>https://github.com/hellokaton/blade-lattice</url>
+    <description>blade lattice</description>
+
     <licenses>
         <license>
             <name>MIT</name>
             <url>https://github.com/hellokaton/blade-lattice/blob/master/LICENSE</url>
         </license>
     </licenses>
+
     <developers>
         <developer>
             <name>hellokaton</name>
             <email>hellokaton@gmail.com</email>
         </developer>
     </developers>
+
     <scm>
         <connection>scm:git@github.com:hellokaton/blade-lattice.git</connection>
         <developerConnection>scm:git@github.com:hellokaton/blade-lattice.git</developerConnection>
