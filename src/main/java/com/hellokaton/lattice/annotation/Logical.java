@@ -1,4 +1,4 @@
-package io.github.biezhi.lattice.annotation;
+package com.hellokaton.lattice.annotation;
 
 /**
  * An enum for specifying a logical operation that can be used for 

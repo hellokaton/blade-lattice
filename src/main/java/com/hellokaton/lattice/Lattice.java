@@ -1,10 +1,9 @@
-package io.github.biezhi.lattice;
+package com.hellokaton.lattice;
 
-import com.blade.ioc.annotation.Inject;
-import com.blade.mvc.RouteContext;
-import com.blade.mvc.WebContext;
-import com.blade.mvc.http.Response;
-import com.blade.mvc.http.Session;
+import com.hellokaton.blade.ioc.annotation.Inject;
+import com.hellokaton.blade.mvc.RouteContext;
+import com.hellokaton.blade.mvc.WebContext;
+import com.hellokaton.blade.mvc.http.Session;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
@@ -26,7 +25,7 @@ public class Lattice {
     private String sessionKey = Constant.DEFAULT_SESSION_KEY;
 
     private Consumer<RouteContext> authenticateFailAction = ctx -> ctx.redirect(this.loginUrl());
-    private Consumer<RouteContext> authorizeFailAction    = ctx -> ctx.response().unauthorized().redirect(this.unauthorizedUrl());
+    private Consumer<RouteContext> authorizeFailAction = ctx -> ctx.response().unauthorized().redirect(this.unauthorizedUrl());
 
     private Set<String> excludeUrls = new HashSet<>();
 

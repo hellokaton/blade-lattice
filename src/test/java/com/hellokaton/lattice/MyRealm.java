@@ -1,6 +1,6 @@
-package io.github.biezhi.lattice;
+package com.hellokaton.lattice;
 
-import com.blade.ioc.annotation.Bean;
+import com.hellokaton.blade.ioc.annotation.Bean;
 
 /**
  * @author biezhi

@@ -2,6 +2,8 @@
 
 解决 Blade 中认证授权问题的轻量级中间件，[示例程序](https://github.com/lets-blade/lattice-example)。
 
+<a href="http://search.maven.org/#search%7Cga%7C1%7Cblade-lattice"><img src="https://img.shields.io/maven-central/v/com.hellokaton/blade-lattice.svg?style=flat-square"></a>
+
 ## 核心组件
 
 - **Lattice**: 管理统一配置
@@ -13,16 +15,16 @@
 
 ```xml
 <dependency>
-    <groupId>io.github.biezhi</groupId>
-    <artifactId>lattice</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.hellokaton</groupId>
+    <artifactId>blade-lattice</artifactId>
+    <version>0.1.0</version>
 </dependency>
 ```
 
 **启用 Lattice 中间件**
 
 ```java
-Blade.of().use(new LatticeMiddleware());
+Blade.create().use(new LatticeMiddleware());
 ```
 
 **配置 Lattice 并托管到 IOC**
@@ -30,7 +32,7 @@ Blade.of().use(new LatticeMiddleware());
 ```java
 @Bean
 public class Bootstrap implements BladeLoader {
-
+    
     @Override
     public void preLoad(Blade blade) {
         Lattice lattice = new Lattice();

@@ -1,4 +1,4 @@
-package io.github.biezhi.lattice.exception;
+package com.hellokaton.lattice.exception;
 
 /**
  * @author biezhi

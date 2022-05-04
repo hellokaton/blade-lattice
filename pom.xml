@@ -4,26 +4,26 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.biezhi</groupId>
-    <artifactId>lattice</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.hellokaton</groupId>
+    <artifactId>blade-lattice</artifactId>
+    <version>0.1.0</version>
 
     <licenses>
         <license>
             <name>MIT</name>
-            <url>https://github.com/biezhi/lattice/blob/master/LICENSE</url>
+            <url>https://github.com/hellokaton/blade-lattice/blob/master/LICENSE</url>
         </license>
     </licenses>
     <developers>
         <developer>
-            <name>biezhi</name>
-            <email>biezhi.me@gmail.com</email>
+            <name>hellokaton</name>
+            <email>hellokaton@gmail.com</email>
         </developer>
     </developers>
     <scm>
-        <connection>scm:git@github.com:biezhi/lattice.git</connection>
-        <developerConnection>scm:git@github.com:biezhi/lattice.git</developerConnection>
-        <url>git@github.com:biezhi/lattice.git</url>
+        <connection>scm:git@github.com:hellokaton/blade-lattice.git</connection>
+        <developerConnection>scm:git@github.com:hellokaton/blade-lattice.git</developerConnection>
+        <url>git@github.com:hellokaton/blade-lattice.git</url>
     </scm>
 
     <dependencies>
@@ -31,28 +31,28 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
+            <version>1.7.36</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>com.bladejava</groupId>
-            <artifactId>blade-mvc</artifactId>
-            <version>2.0.13.ALPHA</version>
+            <groupId>com.hellokaton</groupId>
+            <artifactId>blade-core</artifactId>
+            <version>2.1.0.BETA</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.20</version>
+            <version>1.18.24</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -101,15 +101,15 @@
             <id>release</id>
             <distributionManagement>
                 <snapshotRepository>
-                    <id>oss</id>
+                    <id>ossrh</id>
                     <url>
-                        https://oss.sonatype.org/content/repositories/snapshots/
+                        https://s01.oss.sonatype.org/content/repositories/snapshots/
                     </url>
                 </snapshotRepository>
                 <repository>
-                    <id>oss</id>
+                    <id>ossrh</id>
                     <url>
-                        https://oss.sonatype.org/service/local/staging/deploy/maven2/
+                        https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
                     </url>
                 </repository>
             </distributionManagement>
@@ -172,15 +172,15 @@
             <id>snapshots</id>
             <distributionManagement>
                 <snapshotRepository>
-                    <id>oss</id>
+                    <id>ossrh</id>
                     <url>
-                        https://oss.sonatype.org/content/repositories/snapshots/
+                        https://s01.oss.sonatype.org/content/repositories/snapshots/
                     </url>
                 </snapshotRepository>
                 <repository>
-                    <id>oss</id>
+                    <id>ossrh</id>
                     <url>
-                        https://oss.sonatype.org/service/local/staging/deploy/maven2/
+                        https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
                     </url>
                 </repository>
             </distributionManagement>

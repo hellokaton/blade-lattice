@@ -1,4 +1,4 @@
-package io.github.biezhi.lattice;
+package com.hellokaton.lattice;
 
 import lombok.Data;
 

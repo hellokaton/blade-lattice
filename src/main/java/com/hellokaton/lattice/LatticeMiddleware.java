@@ -1,12 +1,12 @@
-package io.github.biezhi.lattice;
+package com.hellokaton.lattice;
 
-import com.blade.ioc.annotation.Inject;
-import com.blade.mvc.RouteContext;
-import com.blade.mvc.hook.WebHook;
-import io.github.biezhi.lattice.annotation.Logical;
-import io.github.biezhi.lattice.annotation.Permissions;
-import io.github.biezhi.lattice.annotation.Roles;
-import io.github.biezhi.lattice.annotation.Users;
+import com.hellokaton.blade.ioc.annotation.Inject;
+import com.hellokaton.blade.mvc.RouteContext;
+import com.hellokaton.blade.mvc.hook.WebHook;
+import com.hellokaton.lattice.annotation.Logical;
+import com.hellokaton.lattice.annotation.Permissions;
+import com.hellokaton.lattice.annotation.Roles;
+import com.hellokaton.lattice.annotation.Users;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;

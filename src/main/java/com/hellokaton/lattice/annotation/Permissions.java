@@ -1,4 +1,4 @@
-package io.github.biezhi.lattice.annotation;
+package com.hellokaton.lattice.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Roles {
+public @interface Permissions {
 
     String[] value();
 
